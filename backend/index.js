@@ -3,11 +3,17 @@ import cors from 'cors'
 import express from "express"
 import 'dotenv/config'
 
+import postRoutes from './src/Routes/Posts.routes.js'
+
 const app = express();
 
 connectDB()
 app.use(cors())
 app.use(express.json())
+
+
+app.use('/post', postRoutes)
+
 
 
 
