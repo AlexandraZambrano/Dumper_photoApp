@@ -2,10 +2,15 @@ import Post from "../Models/Posts.model.js";
 import B2 from "backblaze-b2";
 
 //GETS ALL POSTS
-export const getAllPosts = async (req, res) => {
+export const getAllPosts = async (res) => {
 
   try {
     const posts = await Post.find()
+
+    if(!posts){
+      res.status(404).json({ message: "No posts yet" })
+    }
+
     res.status(200).json( posts );
   } catch (error) {
       res.json({ error })
@@ -20,6 +25,11 @@ export const getSinglePost = async (req, res) => {
   try {
 
     const post = await Post.findById(id)
+
+    if(!post){
+      res.status(404).json({ message: "Post not found" })
+    }
+
     res.status(200).json( post );
 
   } catch (error) {
@@ -48,7 +58,7 @@ export const createPost = async (req, res) => {
 
     res.status(200).json({ post });
   } catch (error) {
-      res.json({ error })
+      res.status(500).json({ error: "Internal server error" })
   }
 };
 
