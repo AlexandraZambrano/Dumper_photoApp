@@ -34,20 +34,11 @@ function UpdatePost() {
   
 
   return (
-<div>
-      <h2>Edit Post</h2>
+<div className='text-pink'V>
+      <h2 className='text-2xl text-bold text-center mb-10'>Edit Post</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="caption">Caption:</label>
-          <input
-            type="text"
-            id="caption"
-            name="caption"
-            value={caption}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
+      <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10 lg:gap-10 flex items-center'>
+      <div>
           <label htmlFor="image">Choose a new image:</label>
           <input
             type="file"
@@ -57,7 +48,22 @@ function UpdatePost() {
             onChange={handleImageChange}
           />
         </div>
-        <button type="submit">Update Post</button>
+
+
+        <div className='flex-auto w-full mb-1 text-xs space-y-2'>
+          <label className='font-semibold' htmlFor="caption">Caption:</label>
+          <textarea className='text-purple h-28 w-full apperance-none block bg-dark-blue text-gray-600 rounded-lg border-2 border-purple py-4 px-3 focus:outline-none'
+            type="text"
+            id="caption"
+            name="caption"
+            value={caption}
+            onChange={handleInputChange}
+          />
+        </div>
+        </div>
+        <div className='flex items-center justify-center'>
+        <button className='rounded-full mt-3 pl-5 pr-5 border' type="submit">Update Post</button>
+        </div>
       </form>
     </div>
   )

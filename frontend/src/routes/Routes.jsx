@@ -5,7 +5,6 @@ import CreatePost from '../pages/ApiCrud/CreatePost'
 import UpdatePost from '../pages/ApiCrud/UpdatePost'
 import SinglePost from '../pages/ApiCrud/SinglePost'
 import DeletePost from '../pages/ApiCrud/DeletePost'
-import Navbar from '../components/Navbar/Navbar'
 
 function RoutesApp() {
   return (
