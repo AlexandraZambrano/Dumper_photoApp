@@ -1,13 +1,12 @@
-import './App.css'
 import RoutesApp from './routes/Routes'
 
 
 function App() {
 
   return (
-    <>
-      <RoutesApp />
-    </>
+    <div className='h-full px-6 py-12 lg:flex lg:justify-center lg:items-center'>
+        <RoutesApp />
+    </div>
   )
 }
 
