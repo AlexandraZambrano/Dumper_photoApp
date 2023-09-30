@@ -1,10 +1,12 @@
 import './App.css'
+import RoutesApp from './routes/Routes'
+
 
 function App() {
 
   return (
     <>
-      <h1>Dumper, the app to manage your favorite pictures!</h1>
+      <RoutesApp />
     </>
   )
 }
