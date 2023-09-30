@@ -4,6 +4,7 @@ import express from "express"
 import 'dotenv/config'
 
 import postRoutes from './src/Routes/Posts.routes.js'
+import authRoutes from './src/Routes/Auth.routes.js'
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json())
 
 
 app.use('/post', postRoutes)
+app.use('/auth', authRoutes)
 
 
 
