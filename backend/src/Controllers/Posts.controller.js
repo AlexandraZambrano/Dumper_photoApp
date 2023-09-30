@@ -2,18 +2,18 @@ import Post from "../Models/Posts.model.js";
 import B2 from "backblaze-b2";
 
 //GETS ALL POSTS
-export const getAllPosts = async (res) => {
+export const getAllPosts = async (req, res) => {
 
   try {
     const posts = await Post.find()
 
-    if(!posts){
-      res.status(404).json({ message: "No posts yet" })
-    }
+    // if(posts.length === 0){
+    //   return res.status(200).json([]);
+    // }
 
     res.status(200).json( posts );
   } catch (error) {
-      res.json({ error })
+    res.status(404).json({ message: "No posts yet" })
   }
 };
 
@@ -69,7 +69,7 @@ export const updatePost = async (req, res) => {
 
   try {
 
-    const imageUrl = res.locals.url;
+    const imageUrl = res.locals.data.url;
 
     const post = await Post.findById(postId);
 
