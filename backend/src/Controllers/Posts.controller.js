@@ -42,6 +42,7 @@ export const getSinglePost = async (req, res) => {
 export const createPost = async (req, res) => {
 
   const {caption} = req.body
+  const userId = req.user._id
 
   try {
 
@@ -50,6 +51,7 @@ export const createPost = async (req, res) => {
     const post = new Post({
       image: fileData.url,
       caption: caption,
+      postedBy: userId,
       fileId: fileData.fileId,
       fileName: fileData.fileOriginalName
     })
@@ -58,7 +60,7 @@ export const createPost = async (req, res) => {
 
     res.status(200).json({ post });
   } catch (error) {
-      res.status(500).json({ error: "Internal server error" })
+      res.status(500).json({ error: error})
   }
 };
 
@@ -121,3 +123,26 @@ export const deletePost = async (req, res) => {
     res.status(500).json({ error});
   }
 };
+
+//GETS THE POSTS YOU HAVE POSTED
+export const getUserPosts = async (req,res)=> {
+
+  
+  try{
+
+    const userIdToken =  req.user._id;
+
+    console.log(userIdToken)
+    const postedBy = Post.find({ postedBy: userIdToken })
+
+    const userPosts = await postedBy;
+
+    if (userPosts.length === 0) {
+      return res.status(200).json({ message: "No posts yet" });
+    }
+
+    res.status(200).json({ Posts: userPosts })
+  }  catch(err) {
+        console.log(err)
+    }
+}

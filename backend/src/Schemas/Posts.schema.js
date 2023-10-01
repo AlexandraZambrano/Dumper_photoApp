@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-// const {ObjectId} = mongoose.Schema.Types
+const {ObjectId} = mongoose.Schema.Types
 
 
 const postSchema = mongoose.Schema(
@@ -11,11 +11,11 @@ const postSchema = mongoose.Schema(
         createdAt: { type:Date, default: Date.now },
 
         // likes:[{type:ObjectId,ref:"User"}],
-        // postedBy:{
-        //     type:ObjectId,
-        //     ref:"User",
-        //     required: true
-        //  }
+        postedBy:{
+            type:ObjectId,
+            ref:"User",
+            required: true
+         }
     }
 )
 
