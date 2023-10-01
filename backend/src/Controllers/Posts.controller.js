@@ -66,30 +66,66 @@ export const createPost = async (req, res) => {
 
 //UPDATES A POST
 export const updatePost = async (req, res) => {
+  
   const postId = req.params.id;
-  const { caption } = req.body;
-
+  console.log(postId)
+  
   try {
+    
+    const { caption } = req.body;
+    // const imageUrl = res.locals.data.url;
 
-    const imageUrl = res.locals.data.url;
-
-    const post = await Post.findById(postId);
+    const post = await Post.updateOne(postId)
 
     if (!post) {
       return res.status(404).json({ error: "Post not found" });
     }
 
-    post.image = imageUrl;
     post.caption = caption;
+    // post.image = imageUrl
+    console.log(post.caption)
 
     await post.save();
 
     res.status(200).json({ post });
   } catch (error) {
 
-    res.status(500).json({ error: "An error occurred while updating the post." });
+    res.status(500).json({ error: error});
   }
 };
+
+//UPDATES A POST PICTURE
+export const imageUpdate = async(req, res) => {
+  const { caption } = req.body;
+  const postId = req.params.id;
+  
+  try {
+
+    const fileData = res.locals.data;
+
+    const post = await Post.findById(postId)
+
+      post.image= fileData.url,
+      post.caption= caption,
+      post.postedBy= userId,
+      post.fileId= fileData.fileId,
+      post.fileName= fileData.fileOriginalName
+
+    console.log(post)
+
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    await post.save();
+
+    res.status(200).json({ post });
+  } catch (error) {
+
+    res.json({error});
+  }
+};
+
 
 // DELETES A POST
 export const deletePost = async (req, res) => {

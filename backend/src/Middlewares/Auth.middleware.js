@@ -10,7 +10,9 @@ const verifyToken = (req, res, next) => {
         const verified = Jwt.verify(token, process.env.TOKEN_SECRET)
         console.log(verified)
         req.user = verified
+
         next()
+        
     } catch(error) {
         res.status(400).json({ message: "Invalid credentials" })
     }

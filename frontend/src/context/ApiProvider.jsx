@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import axios from 'axios'
 import { createContext } from 'react'
+import axiosInstance from '../axios/axios'
 
 const CREATE_POST_URL = 'upload'
 const UPDATE_POST_URL = 'update'
@@ -16,10 +17,6 @@ function ApiProvider({ children }) {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState()
 
-  useEffect(() => {
-    getAllPosts()
-  }, [])
-
    //GETS ALL POSTS
   const getAllPosts = async () => {
     try {
@@ -29,6 +26,17 @@ function ApiProvider({ children }) {
     } catch (error) {
         console.log(error)
     }
+}
+
+const getUserPosts = async () => {
+  try {
+   const response = await axiosInstance.get('http://localhost:8000/post/my/profile')
+   console.log(response)
+   setData(response.data.Posts)
+
+  } catch (error) {
+      console.log(error)
+  }
 }
 
    //GESTS A POST
@@ -46,9 +54,12 @@ function ApiProvider({ children }) {
    //CREATES POST
   const createPost = async (newPost) => {
     try {
-      const response = await axios.post(`http://localhost:8000/post/${CREATE_POST_URL}`, newPost )
+    
+    const response = await axiosInstance.post(`/${CREATE_POST_URL}`, newPost)
+    if(response){
       const createdPost = response.data
       setData([...data, createdPost])
+    }
 
     } catch (error) {
       console.log(error)
@@ -58,7 +69,7 @@ function ApiProvider({ children }) {
    //UPDATES POST
   const updatePost = async (postId, updatedPostData) => {
     try {
-      const response = await axios.put(`http://localhost:8000/post/${UPDATE_POST_URL}/${postId}`, updatedPostData)
+      const response = await axiosInstance.put(`http://localhost:8000/post/${UPDATE_POST_URL}/${postId}`, updatedPostData)
         const updatedPost = response.data;
         console.log(updatedPost)
         setData([...data, updatedPost]);
@@ -71,7 +82,7 @@ function ApiProvider({ children }) {
    //DELETES POST
    const deletePost = async (postId) => {
     try {
-      const response = await axios.delete(`http://localhost:8000/post/${DELETE_POST_URL}/${postId}`)
+      const response = await axiosInstance.delete(`http://localhost:8000/post/${DELETE_POST_URL}/${postId}`)
 
       if (response.status === 200) {
         const updatedPosts = posts.filter((post) => post.id !== postId);
@@ -89,7 +100,8 @@ function ApiProvider({ children }) {
     getAllPosts,
     getAPost,
     updatePost,
-    deletePost
+    deletePost,
+    getUserPosts
   };
 
 

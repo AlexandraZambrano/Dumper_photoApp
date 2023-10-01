@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 
 const AuthContext = createContext()
@@ -75,10 +76,10 @@ function AuthProvider({ children }) {
         }
     }
 
+    const token = localStorage.getItem('token')
     
     const findToken = () => {
 
-        const token = localStorage.getItem('token')
 
         if(!token  || token === null){
             navigate("/login")
@@ -87,7 +88,7 @@ function AuthProvider({ children }) {
 
 
     return (
-        <AuthContext.Provider value={{ login, userLogin, register, user, setUser, findToken }}>
+        <AuthContext.Provider value={{ login, userLogin, register, user, setUser, findToken, token }}>
             {children}
         </AuthContext.Provider>
     )

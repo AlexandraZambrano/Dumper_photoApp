@@ -1,4 +1,5 @@
 import RoutesApp from './routes/Routes'
+import './App.jsx'
 
 
 function App() {

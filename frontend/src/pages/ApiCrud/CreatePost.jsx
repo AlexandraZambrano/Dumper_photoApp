@@ -6,7 +6,7 @@ function CreatePost() {
     const [image, setImage] = useState(null)
     const [ caption, setCaption] = useState('')
     const { createPost } = useApi()
-    const { findToken } = useAuth()
+    const { findToken, token} = useAuth()
 
     findToken()
 
@@ -32,8 +32,9 @@ function CreatePost() {
     
          
           await createPost(formData);
-          
-         console.log('Post created successfully');
+          if(createPost){
+            console.log('Post created successfully');
+          }
         } catch (error) {
           console.error('Error creating post:', error);
         }
@@ -59,6 +60,7 @@ function CreatePost() {
 
             <div className='flex-auto w-full mb-1 text-xs space-y-2'>
               <label className='font-semibold' htmlFor="caption">Caption:</label>
+              <div>
               <textarea className='text-purple h-28 w-full apperance-none block bg-dark-blue text-gray-600 rounded-lg border-2 border-purple py-4 px-3 focus:outline-none'
                 type="text"
                 id="caption"
@@ -66,6 +68,7 @@ function CreatePost() {
                 value={caption}
                 onChange={handleInputChange}
               />
+              </div>
             </div>
         </div>
         <div className='flex items-center justify-center'>

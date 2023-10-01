@@ -7,7 +7,7 @@ import SinglePost from '../pages/ApiCrud/SinglePost'
 import DeletePost from '../pages/ApiCrud/DeletePost'
 import Login from '../pages/auth/Login'
 import Register from '../pages/auth/Register'
-import Layout from '../helpers/Layout'
+import Profile from '../pages/profile/Profile'
 
 function RoutesApp() {
   return (
@@ -15,10 +15,11 @@ function RoutesApp() {
         <Route path="/post" element={ <ShowPosts /> } />
         <Route path="/post/:id" element={ <SinglePost /> } />
 
-        
+
         <Route path="/post/upload" element={ <CreatePost /> } />
         <Route path="/post/update/:id" element={ <UpdatePost /> } />
         <Route path="/post/delete/:id" element={ <DeletePost /> } />
+        <Route path="/profile" element={ <Profile /> } />
 
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />

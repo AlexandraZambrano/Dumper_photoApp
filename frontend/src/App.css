@@ -1,3 +1,9 @@
+*{
+  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Work Sans', sans-serif;
+}
+
 .overflow{
   overflow-wrap: anywhere;
   width: 70%;
