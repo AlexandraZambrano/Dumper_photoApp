@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import { useApi } from '../../context/ApiProvider'
 import { useParams } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 
 function UpdatePost() {
   const [image, setImage] = useState(null)
   const [ caption, setCaption] = useState('')
+  const { findToken } = useAuth()
+
+  findToken()
 
     const { updatePost } = useApi()
     const { id } = useParams()
@@ -34,7 +38,7 @@ function UpdatePost() {
   
 
   return (
-<div className='text-pink'V>
+<div className='text-pink'>
       <h2 className='text-2xl text-bold text-center mb-10'>Edit Post</h2>
       <form onSubmit={handleSubmit}>
       <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10 lg:gap-10 flex items-center'>

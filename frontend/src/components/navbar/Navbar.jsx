@@ -17,7 +17,7 @@ function Navbar() {
             </div>
             <ul className={`md:flex md:items-center md:pb-0 pb-12 md:static absolute bg-purple md:z-auto z-index[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-16 ':'top-[-496px]'}`}>
                 <li className='md:ml-8 text-xl md:my-0 my-7'>
-                    <Link className='text-gray-600 hover:text-pink duration-500' to={'/posts'}>Home</Link>
+                    <Link className='text-gray-600 hover:text-pink duration-500' to={'/post'}>Home</Link>
                 </li>
 
                 <li className='md:ml-8 text-xl md:my-0 my-7'>
@@ -31,9 +31,9 @@ function Navbar() {
                 <li className='md:ml-8 text-xl md:my-0 my-7'>
                     <Link className='text-gray-600 hover:text-pink duration-500' to={'/'}>Profile</Link>
                 </li>
-                <Button>
-                    Sing In
-                </Button>
+                <Link to={'/login'}>
+                    <Button>Sing In</Button>
+                </Link>
             </ul>
         </div>
     </div>

@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import { useApi } from '../../context/ApiProvider'
+import { useAuth } from '../../context/AuthContext'
 
 function CreatePost() {
     const [image, setImage] = useState(null)
     const [ caption, setCaption] = useState('')
     const { createPost } = useApi()
+    const { findToken } = useAuth()
+
+    findToken()
 
     const handleInputChange = (e) => {
         setCaption(e.target.value)

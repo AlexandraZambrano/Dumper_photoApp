@@ -4,7 +4,7 @@ import RoutesApp from './routes/Routes'
 function App() {
 
   return (
-    <div>
+    <div className='text-pink'>
         <RoutesApp />
     </div>
   )

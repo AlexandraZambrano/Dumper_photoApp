@@ -16,6 +16,10 @@ function ApiProvider({ children }) {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState()
 
+  useEffect(() => {
+    getAllPosts()
+  }, [])
+
    //GETS ALL POSTS
   const getAllPosts = async () => {
     try {

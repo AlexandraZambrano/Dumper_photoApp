@@ -8,9 +8,9 @@ function ShowPosts() {
 
     const { data, getAllPosts } = useApi()
 
-    useEffect(() => {
+    // useEffect(() => {
         getAllPosts()
-    }, [])
+    // }, [])
 
     console.log(data)
           
@@ -22,7 +22,7 @@ function ShowPosts() {
             return(
                 <div className='text-pink'>
                     <Link  key={int._id} to={`/post/${int._id}`}>
-                    <img src={int.image}/>
+                    <img className='rounded' src={int.image}/>
                     <p className='text-center overflow-hidden sm:overflow'>{int.caption}</p>
                     </Link>
                  </div>
