@@ -29,14 +29,14 @@ function SinglePost() {
           <Link to={`/post/delete/${id}`}><FaTrashAlt /></Link>
         </div>
 
-      <div className='grid lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1 m-20 items-centerr'>
+      <div className='grid lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1 m-20 justify-items-center'>
 
         <div className='flex justify-center '>
-          <img className='sm:h-full w-100 object-contain cursor:pointer' src={data.image} />
+          <img className='sm:h-full object-cover cursor:pointer rounded-xl' src={data.image} />
         </div>
 
 
-        <div className='flex text-pink overflow justify-center bg-purple ml-5 rounded-xl items-center'>{data.caption}</div>
+        <div className='flex text-pink overflow justify-center bg-purple rounded-xl items-center'>{data.caption}</div>
 
 
       </div>

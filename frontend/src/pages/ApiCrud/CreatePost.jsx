@@ -58,7 +58,7 @@ function CreatePost() {
       <div>
 
       <form   onSubmit={handleSubmit}>
-        <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10 lg:gap-5 flex items-center ml-40 mr-40 mt-40 justify-items-center '>
+        <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10 lg:gap-5 flex items-center md:mx-40 md:mt-40 xs:mx-10 justify-items-center '>
             <div>
 
               {imagePreview ?

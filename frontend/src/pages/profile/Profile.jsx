@@ -14,7 +14,7 @@ useEffect(() => {
 
   console.log(data)
 
-  if(data == null) {
+  if(data === null) {
     return (
         <div>
             <h2>No posts yet, post something!</h2>
@@ -26,7 +26,7 @@ useEffect(() => {
   }else{
       return (
         <>
-            <h1 className='text-2xl text-bold text-center mt-10 mb-10'>My Posts</h1>
+            <h1 className='text-2xl text-bold text-center mt-10 mb-10'>MY DUMPER 🥹!!!</h1>
         <div className='grid mx-3 pt-5 gap-1 xl:grid-cols-7 md:grid-cols-5 sm:grid-cols-2 xs:grid-cols-2'>
             {
                 data.map((int) => {

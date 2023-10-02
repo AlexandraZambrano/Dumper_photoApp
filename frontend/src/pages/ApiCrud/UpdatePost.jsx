@@ -70,26 +70,41 @@ function UpdatePost() {
 
 
   return (
-    <div className='text-pink'>
-      <h2 className='text-2xl text-bold text-center mb-10'>Edit Post</h2>
+    <div className='text-pink h-100vh'>
+      <h2 className='text-2xl text-bold text-center mt-10'>Edit your post 🤯!</h2>
       <form onSubmit={handleSubmit}>
-        <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10 lg:gap-5 flex items-center m-30'>
-          <div>
-            <label htmlFor="image">Choose a new image:</label>
-            <input
-              className='inputFile'
-              type="file"
-              id="image"
-              name="image"
-              accept="image/*"
-              onChange={handleImageChange}
-            />
-            <img src={image} alt="" />
-            {imagePreview ?
-              <img src={imagePreview} alt="Preview" style={{ maxWidth: '100%', marginTop: '10px' }} />
-              : <img src={data.image} />
+        <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10 lg:gap-5 flex items-center md:mx-40 md:mt-40 xs:mx-10 justify-items-center '>
+        {imagePreview ?
+              <>
+                <label className='labelFile hover:grayscale-100' htmlFor="image">
+                  <img className='hover:blur' src={imagePreview} alt="" />
+                </label>
+                <input 
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                onChange={handleImageChange}
+                hidden
+              />
+              </>
+                :
+                <>
+            <label className='labelFile' htmlFor="image">
+              <img src={data.image} alt="" />
+            </label>
+              <input 
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                onChange={handleImageChange}
+                hidden
+              />
+              </>
+            
+            
             }
-          </div>
 
 
           <div className='flex-auto w-full mb-1 text-xs space-y-2'>

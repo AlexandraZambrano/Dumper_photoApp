@@ -14,7 +14,7 @@ function Navbar() {
 
   return (
     <div className='bg-purple-800 shadow-md w-full top-0 left-0'>
-        <div className='md:flex items-center justify-between bg-purple py-4 md:px-10 px-7'>
+        <div className='md:flex items-center justify-between bg-purple py-5 md:px-10 px-7'>
             <div className='font-bold text-2x1 cursor-pointer flex items-center text-pink'>
             <Link className='text-gray-600 hover:text-pink duration-500' to={'/post'}>
                 <span className='text-3x1 text-blue-600 mr-1 pt-2'>!</span>
