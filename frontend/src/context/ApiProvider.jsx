@@ -5,6 +5,7 @@ import axiosInstance from '../axios/axios'
 
 const CREATE_POST_URL = 'upload'
 const UPDATE_POST_URL = 'update'
+const UPDATE_IMAGE_POST_URL = 'image/update'
 const DELETE_POST_URL = 'delete'
 
 const ApiContext = createContext()
@@ -67,17 +68,48 @@ const getUserPosts = async () => {
   }
 
    //UPDATES POST
-  const updatePost = async (postId, updatedPostData) => {
+  const updatePost = async (postId, updatedCaption) => {
     try {
-      const response = await axiosInstance.put(`http://localhost:8000/post/${UPDATE_POST_URL}/${postId}`, updatedPostData)
-        const updatedPost = response.data;
+      const response = await axiosInstance.put(`http://localhost:8000/post/update/${postId}`, {caption: updatedCaption} )
+      
+      const updatedPost = await response.data;
+      console.log(updatedPost)
+      console.log(updatedCaption)
+
+      try {
+        setData(...data, updatedPost)
         console.log(updatedPost)
-        setData([...data, updatedPost]);
-        console.log(data)
+      } catch (error) {
+        console.log(error)
+      }
+      
+      console.log(data)
     } catch (error) {
-      console.error('Error updating post:', error);
+      console.error(error);
     }
   };
+
+//UPDATES A POST IMAGE
+const imageUpdate = async (postId, updatedImage) => {
+  try {
+    const response = await axiosInstance.put(`http://localhost:8000/post/image/update/${postId}`, updatedImage )
+    
+    const updatedPostImage = await response.data;
+    console.log(response)
+    console.log(updatedImage)
+
+    try {
+      setData(...data, updatedPostImage)
+      console.log(updatedPostImage)
+    } catch (error) {
+      console.log(error)
+    }
+    
+    console.log(data)
+  } catch (error) {
+    console.error(error);
+  }
+}
 
    //DELETES POST
    const deletePost = async (postId) => {
@@ -101,7 +133,8 @@ const getUserPosts = async () => {
     getAPost,
     updatePost,
     deletePost,
-    getUserPosts
+    getUserPosts,
+    imageUpdate
   };
 
 

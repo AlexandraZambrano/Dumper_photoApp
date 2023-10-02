@@ -14,7 +14,7 @@ function ShowPosts() {
     console.log(data)
           
   return (
-    <div className='grid w-full max-w-5xl p-5 pb-10 mx-auto mb-10 gap-3 xl:grid-cols-7 md:grid-cols-4 sm:grid-cols-2 xs:grid-cols-2 space-y-2'>
+    <div className='grid max-w-7 mx-3 pt-5 gap-3 xl:grid-cols-7 md:grid-cols-5 sm:grid-cols-2 xs:grid-cols-2 space-y-2'>
 
      {
         data.map((int) => {
@@ -23,7 +23,7 @@ function ShowPosts() {
                     <Link  className='flex h-full' key={int._id} to={`/post/${int._id}`}>
                     <img className='rounded object-cover' src={int.image}/>
                     <div className='sm:overflow'>
-                    <p className='text-center'>{int.caption}</p>
+                    {/* <p className='text-center'>{int.caption}</p> */}
                     </div>
                     </Link>
                  </div>

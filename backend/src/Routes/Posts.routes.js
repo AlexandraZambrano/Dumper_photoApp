@@ -11,8 +11,9 @@ router.get('/:id', getSinglePost);
 router.get('/my/profile', verifyToken, getUserPosts);
 
 router.post('/upload', verifyToken, uploadMulter, uploadB2, createPost);
-router.put('/update/caption/:id', verifyToken, updatePost);
-router.put('/image/update/:id', verifyToken, imageUpdate);
+
+router.put('/update/:id', verifyToken, updatePost);
+router.put('/image/update/:id', verifyToken, uploadMulter, uploadB2, imageUpdate);
 
 router.delete('/delete/:id', verifyToken, deletePost);
 

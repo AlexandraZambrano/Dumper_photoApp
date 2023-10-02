@@ -67,62 +67,43 @@ export const createPost = async (req, res) => {
 //UPDATES A POST
 export const updatePost = async (req, res) => {
   
-  const postId = req.params.id;
-  console.log(postId)
-  
   try {
+    const id = req.params.id
+    const { caption } = req.body
+
+    const postUpdated = await Post.findById(id)
+
+    console.log(postUpdated)
+
+    postUpdated.caption = caption
     
-    const { caption } = req.body;
-    // const imageUrl = res.locals.data.url;
+    console.log(postUpdated.caption)
 
-    const post = await Post.updateOne(postId)
+    await postUpdated.save()
 
-    if (!post) {
-      return res.status(404).json({ error: "Post not found" });
-    }
-
-    post.caption = caption;
-    // post.image = imageUrl
-    console.log(post.caption)
-
-    await post.save();
-
-    res.status(200).json({ post });
+    res.status(200).json({postUpdated})
   } catch (error) {
-
-    res.status(500).json({ error: error});
+    res.json({ message: error })
   }
 };
 
 //UPDATES A POST PICTURE
 export const imageUpdate = async(req, res) => {
-  const { caption } = req.body;
-  const postId = req.params.id;
-  
   try {
-
+    const id = req.params.id
     const fileData = res.locals.data;
 
-    const post = await Post.findById(postId)
+    const imageUpdate = await Post.findById(id)
+    
+    imageUpdate.image = fileData.url,
+    imageUpdate.fileId = fileData.fileId,
+    imageUpdate.fileName = fileData.fileOriginalName
+    
+    await imageUpdate.save()
 
-      post.image= fileData.url,
-      post.caption= caption,
-      post.postedBy= userId,
-      post.fileId= fileData.fileId,
-      post.fileName= fileData.fileOriginalName
-
-    console.log(post)
-
-    if (!post) {
-      return res.status(404).json({ error: "Post not found" });
-    }
-
-    await post.save();
-
-    res.status(200).json({ post });
+    res.status(200).json({imageUpdate})
   } catch (error) {
-
-    res.json({error});
+    res.json({ message: error })
   }
 };
 
