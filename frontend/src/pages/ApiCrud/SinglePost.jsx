@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useApi } from '../../context/ApiProvider'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import '../../App.css'
 import { FaEdit, FaTrashAlt } from 'react-icons/fa'
 
@@ -8,6 +8,13 @@ import { FaEdit, FaTrashAlt } from 'react-icons/fa'
 function SinglePost() {
     const { data, getAPost } = useApi()
     const { id } = useParams()
+    const [token,setToken]=useState(null);
+    const [isForbidden,setIsForbidden]=useState(false);
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        setToken(localStorage.getItem('token'))
+    }, [token])
 
     useEffect(() => {
         getAPost(id)
@@ -15,20 +22,21 @@ function SinglePost() {
 
   return (
     <div className='text-pink'>
-      
-      <div className='flex justify-end m-10'>
-        <Link className='pr-5' to={`/post/update/${id}`}><FaEdit /></Link>
-        <Link to={`/post/delete/${id}`}><FaTrashAlt /></Link>
-      </div>
 
-      <div className='grid lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1 '>
 
-        <div className='flex justify-center'>
+        <div className='flex justify-end '>
+          <Link className='pr-5' to={`/post/update/${id}`}><FaEdit /></Link>
+          <Link to={`/post/delete/${id}`}><FaTrashAlt /></Link>
+        </div>
+
+      <div className='grid lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-1 m-20 items-centerr'>
+
+        <div className='flex justify-center '>
           <img className='sm:h-full w-100 object-contain cursor:pointer' src={data.image} />
         </div>
 
 
-          <div className='flex text-pink overflow'>{data.caption}</div>
+        <div className='flex text-pink overflow justify-center bg-purple ml-5 rounded-xl items-center'>{data.caption}</div>
 
 
       </div>

@@ -69,11 +69,14 @@ export const updatePost = async (req, res) => {
   
   try {
     const id = req.params.id
+    const userId = req.user._id;
     const { caption } = req.body
 
     const postUpdated = await Post.findById(id)
 
-    console.log(postUpdated)
+    if (postUpdated.postedBy.toString() !== userId.toString()) {
+      return res.status(403).json({ message: 'Permission denied' });
+    }
 
     postUpdated.caption = caption
     
@@ -92,8 +95,13 @@ export const imageUpdate = async(req, res) => {
   try {
     const id = req.params.id
     const fileData = res.locals.data;
+    const userId = req.user._id;
 
     const imageUpdate = await Post.findById(id)
+
+    if (imageUpdate.postedBy.toString() !== userId.toString()) {
+      return res.status(403).json({ message: 'Permission denied' });
+    }
     
     imageUpdate.image = fileData.url,
     imageUpdate.fileId = fileData.fileId,
@@ -111,12 +119,17 @@ export const imageUpdate = async(req, res) => {
 // DELETES A POST
 export const deletePost = async (req, res) => {
   const id = req.params.id;
+  const userId = req.user._id;
 
   try {
     const post = await Post.findById(id);
 
     if (!post) {
       return res.status(404).json({ error: "Post not found" });
+    }
+
+    if (post.postedBy.toString() !== userId.toString()) {
+      return res.status(403).json({ message: 'Permission denied' });
     }
 
     const b2 = new B2({

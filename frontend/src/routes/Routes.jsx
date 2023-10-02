@@ -8,6 +8,8 @@ import DeletePost from '../pages/ApiCrud/DeletePost'
 import Login from '../pages/auth/Login'
 import Register from '../pages/auth/Register'
 import Profile from '../pages/profile/Profile'
+import Forbidden from '../errors/Forbidden'
+import UnknownError from '../errors/UnknownError'
 
 function RoutesApp() {
   return (
@@ -23,6 +25,10 @@ function RoutesApp() {
 
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />
+
+
+        <Route path="/forbidden" element={ <Forbidden /> } />
+        <Route path="/unknown/error" element={ <UnknownError /> } />
     </Routes>
   )
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useApi } from '../../context/ApiProvider'
 import { useParams } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
+import '../../App.css'
 
 function UpdatePost() {
   const [image, setImage] = useState(null)
@@ -58,7 +59,7 @@ function UpdatePost() {
       console.log(caption)
       await updatePost(id, caption);
 
-      console.log('Post updated successfully');
+      // console.log('Post updated successfully');
     } catch (error) {
       console.error('Error creating post:', error);
     }
@@ -72,10 +73,11 @@ function UpdatePost() {
     <div className='text-pink'>
       <h2 className='text-2xl text-bold text-center mb-10'>Edit Post</h2>
       <form onSubmit={handleSubmit}>
-        <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10 lg:gap-10 flex items-center'>
+        <div className='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-10 lg:gap-5 flex items-center m-30'>
           <div>
             <label htmlFor="image">Choose a new image:</label>
             <input
+              className='inputFile'
               type="file"
               id="image"
               name="image"

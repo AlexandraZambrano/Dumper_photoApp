@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
@@ -11,6 +12,8 @@ function Login() {
   const { identifier, password } = userCredentials;
 
   const { login } = useAuth()
+
+  const navigate = useNavigate()
 
 
   const handleChange = (e) => {
@@ -27,6 +30,11 @@ function Login() {
     try {
         await login({ identifier, password });
         console.log('Logged in!');
+
+        setTimeout(function(){
+          window.location.reload();
+       }, 1000)
+        navigate('/post')
       } catch (error) {
         console.log('Login failed.');
       }
