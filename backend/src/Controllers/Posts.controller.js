@@ -13,7 +13,7 @@ export const getAllPosts = async (req, res) => {
 
     res.status(200).json( posts );
   } catch (error) {
-    res.status(404).json({ message: "No posts yet" })
+    res.status(404).json([])
   }
 };
 

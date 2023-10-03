@@ -36,3 +36,7 @@ And it should start running right away, make sure that it is connected to the da
    ```bash
       npm run dev
 And it should start running right away.
+## ``Project Development``
+To develop this project, I chose technologies that would provide comfort while still presenting a challenge. For the frontend, I opted to use React as the library in conjunction with the Vite compiler, aiming to strike a balance between familiarity and a learning opportunity. Express, being a new challenge for me, was my choice for the backend. Additionally, when considering how to handle image uploads, I decided to use Multer for image uploading and integrate a cloud storage service to avoid saving images directly in a backend folder, thus improving performance.
+
+In the backend, I have adopted a Model-View-Controller (MVC) architecture and utilized a MongoDB Atlas database, making it accessible when the application starts without the need to launch MongoDB Compass. For the frontend, I aimed to follow an architecture based on Atomic Design principles, creating an organized environment and making extensive use of React features, including hooks, wherever possible.
