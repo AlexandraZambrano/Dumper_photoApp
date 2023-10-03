@@ -61,7 +61,6 @@ function UpdatePost() {
      
       await updatePost(id, caption);
 
-      alert('Post updated successfully')
       navigate('/')
     } catch (error) {
       console.error('Error creating post:', error);

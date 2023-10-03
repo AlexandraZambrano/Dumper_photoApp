@@ -63,10 +63,11 @@ const getUserPosts = async () => {
       const createdPost = response.data
       setData([...data, createdPost])
 
-      console.log('Post created successfully');
+      alert('Post created successfully');
     }
 
     } catch (error) {
+      alert('There has been an error uploading the caption')
       console.log(error)
     }
   }
@@ -82,12 +83,16 @@ const getUserPosts = async () => {
       try {
         setData(...data, updatedPost)
         console.log(updatedPost)
+
       } catch (error) {
         console.log(error)
       }
+
+      alert('Post updated successfully');
       
       console.log(data)
     } catch (error) {
+      alert('You are not authorized to update a post you didnt upload')
       console.error(error);
     }
   };
@@ -105,9 +110,11 @@ const imageUpdate = async (postId, updatedImage) => {
     } catch (error) {
       console.log(error)
     }
+    alert('Post updated successfully');
     
     console.log(data)
   } catch (error) {
+    alert('You are not authorized to update a post you didnt upload')
     console.error(error);
   }
 }

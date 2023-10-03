@@ -44,7 +44,6 @@ function CreatePost() {
          
           await createPost(formData);
           if(createPost){
-            alert('Post created successfully')
             navigate('/')
           }
         } catch (error) {
