@@ -10,9 +10,7 @@ const { data, getUserPosts } = useApi()
 
 useEffect(() => {
     getUserPosts()
-  }, [])
-
-  console.log(data)
+  }, [data])
 
   if(data === null) {
     return (
@@ -33,7 +31,7 @@ useEffect(() => {
                     return (
                         <div key={int._id}>
                             <Link  key={int._id} to={`/post/${int._id}`}>
-                            <img className='rounded h-full mx-w-100' src={int.image}/>
+                            <img className='rounded object-cover h-full mx-w-100' src={int.image}/>
                             </Link>
                         </div>
                     )

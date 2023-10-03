@@ -56,10 +56,14 @@ const getUserPosts = async () => {
   const createPost = async (newPost) => {
     try {
     
-    const response = await axiosInstance.post(`/${CREATE_POST_URL}`, newPost)
+    const response = await axiosInstance.post(`http://localhost:8000/post/upload`, newPost)
+
+    console.log(response.data)
     if(response){
       const createdPost = response.data
       setData([...data, createdPost])
+
+      console.log('Post created successfully');
     }
 
     } catch (error) {
@@ -74,7 +78,6 @@ const getUserPosts = async () => {
       
       const updatedPost = await response.data;
       console.log(updatedPost)
-      console.log(updatedCaption)
 
       try {
         setData(...data, updatedPost)
@@ -95,8 +98,6 @@ const imageUpdate = async (postId, updatedImage) => {
     const response = await axiosInstance.put(`http://localhost:8000/post/image/update/${postId}`, updatedImage )
     
     const updatedPostImage = await response.data;
-    console.log(response)
-    console.log(updatedImage)
 
     try {
       setData(...data, updatedPostImage)

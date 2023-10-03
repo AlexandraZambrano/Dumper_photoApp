@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useApi } from '../../context/ApiProvider'
 import { useAuth } from '../../context/AuthContext'
 import { FaPlus } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 function CreatePost() {
     const [image, setImage] = useState(null)
@@ -9,6 +10,7 @@ function CreatePost() {
     const [imagePreview, setImagePreview] = useState(null);
     const { createPost } = useApi()
     const { findToken } = useAuth()
+    const navigate = useNavigate()
 
     findToken()
 
@@ -38,14 +40,12 @@ function CreatePost() {
           const formData = new FormData();
           formData.append('image', image);
           formData.append('caption', caption);
-
-          //CONSOLE.LOG
-          console.log(formData.append)
     
          
           await createPost(formData);
           if(createPost){
-            console.log('Post created successfully');
+            alert('Post created successfully')
+            navigate('/')
           }
         } catch (error) {
           console.error('Error creating post:', error);

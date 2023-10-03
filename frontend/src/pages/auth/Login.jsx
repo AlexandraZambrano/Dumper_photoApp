@@ -34,7 +34,7 @@ function Login() {
         setTimeout(function(){
           window.location.reload();
        }, 1000)
-        navigate('/post')
+        navigate('/')
       } catch (error) {
         console.log('Login failed.');
       }

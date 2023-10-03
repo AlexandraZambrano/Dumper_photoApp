@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useApi } from '../../context/ApiProvider'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import '../../App.css'
 
@@ -11,12 +11,14 @@ function UpdatePost() {
   const [imagePreview, setImagePreview] = useState(null);
   const { findToken } = useAuth()
 
+  const navigate = useNavigate()
+
   findToken()
 
   const { updatePost, imageUpdate, getAPost, data } = useApi()
   const { id } = useParams()
 
-  console.log(id)
+
 
   useEffect(() => {
     getAPost(id)
@@ -46,7 +48,7 @@ function UpdatePost() {
     }
 
   };
-  console.log(image)
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,17 +58,16 @@ function UpdatePost() {
 
       await imageUpdate(id, formData)
 
-      console.log(caption)
+     
       await updatePost(id, caption);
 
-      // console.log('Post updated successfully');
+      alert('Post updated successfully')
+      navigate('/')
     } catch (error) {
       console.error('Error creating post:', error);
     }
   };
 
-  console.log(image)
-  console.log(prevCaption)
 
 
   return (
@@ -97,7 +98,7 @@ function UpdatePost() {
                 type="file"
                 id="image"
                 name="image"
-                accept="image/*"
+                accept="image/jpg,png"
                 onChange={handleImageChange}
                 hidden
               />

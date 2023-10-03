@@ -14,7 +14,7 @@ import UnknownError from '../errors/UnknownError'
 function RoutesApp() {
   return (
     <Routes>
-        <Route path="/post" element={ <ShowPosts /> } />
+        <Route path="/" element={ <ShowPosts /> } />
         <Route path="/post/:id" element={ <SinglePost /> } />
 
 

@@ -8,9 +8,6 @@ function Register() {
 
     const { uname, email, password } = user
 
-    //CONSOLE.LOG
-    console.log(user)
-
 
     const handleChange = (e) => {
         const { name, value } = e.target

@@ -9,9 +9,7 @@ function ShowPosts() {
 
     useEffect(() => {
         getAllPosts()
-    }, [])
-
-    console.log(data)
+    }, [data])
 
     
           

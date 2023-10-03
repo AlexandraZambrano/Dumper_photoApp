@@ -7,9 +7,9 @@ export const getAllPosts = async (req, res) => {
   try {
     const posts = await Post.find()
 
-    // if(posts.length === 0){
-    //   return res.status(200).json([]);
-    // }
+    if(posts.length === 0){
+      return res.status(200).json({ message: 'There are no posts yet' });
+    }
 
     res.status(200).json( posts );
   } catch (error) {
@@ -79,8 +79,6 @@ export const updatePost = async (req, res) => {
     }
 
     postUpdated.caption = caption
-    
-    console.log(postUpdated.caption)
 
     await postUpdated.save()
 
@@ -162,7 +160,6 @@ export const getUserPosts = async (req,res)=> {
 
     const userIdToken =  req.user._id;
 
-    console.log(userIdToken)
     const postedBy = Post.find({ postedBy: userIdToken })
 
     const userPosts = await postedBy;

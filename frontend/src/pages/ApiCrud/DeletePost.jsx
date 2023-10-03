@@ -17,7 +17,7 @@ function DeletePost() {
         if (confirmDelete) {
           deletePost(id)
             .then(() => {
-              navigate('/posts');
+              navigate('/');
             })
             .catch((error) => {
               console.error('Error deleting post:', error);
